@@ -1,0 +1,1744 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XML GUIDE : Learn By Doing</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="GuideDesign.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <img src="favicon.png" alt="logo" class="logo" />
+        <div class="header-text">
+          <div class="header-label">Learn by Doing · Full Course</div>
+          <h1>XML GUIDE</h1>
+          <p>
+            From zero to understanding — with code examples you can run yourself
+            at every step
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <nav>
+      <button class="nav-btn active" onclick="go(0)">🗺 Roadmap</button>
+      <button class="nav-btn" onclick="go(1)">① Why XML?</button>
+      <button class="nav-btn" onclick="go(2)">② XML Basics</button>
+      <button class="nav-btn" onclick="go(3)">③ DTD</button>
+      <button class="nav-btn" onclick="go(4)">④ XML Schema</button>
+      <button class="nav-btn" onclick="go(5)">⑤ DOM Parser</button>
+      <button class="nav-btn" onclick="go(6)">⑥ SAX Parser</button>
+      <button class="nav-btn" onclick="go(7)">⑦ XSL / XSLT</button>
+      <button class="nav-btn" id="suggestBtn" onclick="toggleSuggestions()">
+        ⭐ Suggestions
+      </button>
+    </nav>
+
+    <main>
+      <div class="section active" id="s0">
+        <div class="page-title">Course Roadmap</div>
+        <div class="page-sub">
+          Follow these phases in order — each one builds on the last. Click any
+          card to jump to that topic.
+        </div>
+
+        <div class="roadmap">
+          <div class="rc" onclick="go(1)">
+            <div class="rn">INTRO</div>
+            <div class="rt">Why XML?</div>
+          </div>
+          <div class="rc" onclick="go(2)">
+            <div class="rn">PHASE 1</div>
+            <div class="rt">XML Basics</div>
+          </div>
+          <div class="rc" onclick="go(3)">
+            <div class="rn">PHASE 2A</div>
+            <div class="rt">DTD</div>
+          </div>
+          <div class="rc" onclick="go(4)">
+            <div class="rn">PHASE 2B</div>
+            <div class="rt">XML Schema</div>
+          </div>
+          <div class="rc" onclick="go(5)">
+            <div class="rn">PHASE 3A</div>
+            <div class="rt">DOM Parser</div>
+          </div>
+          <div class="rc" onclick="go(6)">
+            <div class="rn">PHASE 3B</div>
+            <div class="rt">SAX Parser</div>
+          </div>
+          <div class="rc" onclick="go(7)">
+            <div class="rn">PHASE 4</div>
+            <div class="rt">XSL / XSLT</div>
+          </div>
+        </div>
+
+        <div class="analogy">
+          <div class="alabel">The flow in one line</div>
+          Write XML data → Validate it (DTD / XSD) → Read &amp; process it (DOM
+          / SAX) → Display it (XSL)
+        </div>
+
+        <h2>What Each Technology Does</h2>
+        <table>
+          <tr>
+            <th>Technology</th>
+            <th>Role</th>
+            <th>Think of it as...</th>
+          </tr>
+          <tr>
+            <td><strong>XML</strong></td>
+            <td>Stores and structures data</td>
+            <td>A filing cabinet</td>
+          </tr>
+          <tr>
+            <td><strong>DTD</strong></td>
+            <td>Basic structure rules</td>
+            <td>A simple checklist</td>
+          </tr>
+          <tr>
+            <td><strong>XSD / Schema</strong></td>
+            <td>Advanced rules + data types</td>
+            <td>A strict contract</td>
+          </tr>
+          <tr>
+            <td><strong>DOM</strong></td>
+            <td>Loads entire XML as a tree in memory</td>
+            <td>Reading the whole book at once</td>
+          </tr>
+          <tr>
+            <td><strong>SAX</strong></td>
+            <td>Reads XML as a stream, line by line</td>
+            <td>Listening as someone reads aloud</td>
+          </tr>
+          <tr>
+            <td><strong>XSL / XSLT</strong></td>
+            <td>Transforms XML into HTML for display</td>
+            <td>The display template</td>
+          </tr>
+        </table>
+
+        <h2>Tools to Install Before Starting</h2>
+        <div class="tool-row">
+          <div class="ti">📝</div>
+          <div>
+            <div class="tn">VS Code</div>
+            <div class="td">
+              Free code editor — code.visualstudio.com. Also install the "XML"
+              extension by Red Hat for syntax highlighting.
+            </div>
+          </div>
+        </div>
+        <div class="tool-row">
+          <div class="ti">🐍</div>
+          <div>
+            <div class="tn">Python 3.x</div>
+            <div class="td">
+              python.org — has built-in XML libraries. You can run all parsing
+              examples with zero setup beyond the install.
+            </div>
+          </div>
+        </div>
+        <div class="tool-row">
+          <div class="ti">☕</div>
+          <div>
+            <div class="tn">Java JDK 11+ (optional)</div>
+            <div class="td">
+              adoptium.net — needed only if you want to run the Java versions of
+              DOM and SAX examples.
+            </div>
+          </div>
+        </div>
+        <div class="tool-row">
+          <div class="ti">🌐</div>
+          <div>
+            <div class="tn">Firefox Browser</div>
+            <div class="td">
+              Used in the XSL section. Firefox handles local XSLT files without
+              needing a server (Chrome blocks them).
+            </div>
+          </div>
+        </div>
+        <div class="tool-row">
+          <div class="ti">✅</div>
+          <div>
+            <div class="tn">Online XML Validator</div>
+            <div class="td">
+              freeformatter.com/xml-validator.html — paste XML and XSD to
+              validate instantly in the browser.
+            </div>
+          </div>
+        </div>
+
+        <div class="bnav">
+          <button class="btn btn-s" disabled>← Previous</button>
+          <button class="btn btn-p" onclick="go(1)">Start: Why XML? →</button>
+        </div>
+      </div>
+
+      <div class="section" id="s1">
+        <div class="page-title">Why XML? — The Introduction</div>
+        <div class="page-sub">
+          Before touching any code, understand the problem XML was built to
+          solve and where it appears in the real world.
+        </div>
+
+        <h2>The Problem XML Was Built to Solve</h2>
+        <p>
+          Before XML, different software systems — a bank's database, a
+          government portal, a hospital records system — each stored data in
+          their own private format. When they needed to share data, developers
+          had to write custom converters for every single pair of systems. That
+          scaled terribly.
+        </p>
+        <p>
+          XML was published by the W3C in 1998 to be a
+          <strong>universal, human-readable format</strong> that any system on
+          any platform in any programming language could read and write. The
+          idea was simple: agree on one standard way to structure data, and
+          everything can talk to everything.
+        </p>
+
+        <div class="analogy">
+          <div class="alabel">Real World Analogy</div>
+          Imagine every country used a different power plug shape. Travelers
+          needed a different adapter for every destination. XML is like agreeing
+          on one universal plug standard — once adopted, everything works
+          everywhere.
+        </div>
+
+        <h2>Where XML Is Used in Real Life</h2>
+        <div class="ugrid">
+          <div class="uc">
+            <div class="uci">🏦</div>
+            <div class="uct">Banking &amp; Finance</div>
+            <div class="ucd">
+              Banks exchange transactions using XML — SWIFT messages, SEPA
+              payments, ISO 20022 standard are all XML-based.
+            </div>
+          </div>
+          <div class="uc">
+            <div class="uci">🏥</div>
+            <div class="uct">Healthcare</div>
+            <div class="ucd">
+              Patient records, lab results, and prescriptions are shared between
+              hospitals using HL7 and FHIR — both XML standards.
+            </div>
+          </div>
+          <div class="uc">
+            <div class="uci">🛒</div>
+            <div class="uct">E-Commerce</div>
+            <div class="ucd">
+              Online shops send invoices, orders, and inventory updates as XML
+              between their system and suppliers or payment providers.
+            </div>
+          </div>
+          <div class="uc">
+            <div class="uci">🌐</div>
+            <div class="uct">Web Services (SOAP)</div>
+            <div class="ucd">
+              SOAP web services — heavily used in enterprise systems — send
+              every request and response entirely in XML.
+            </div>
+          </div>
+          <div class="uc">
+            <div class="uci">📱</div>
+            <div class="uct">Android Apps</div>
+            <div class="ucd">
+              Every Android app screen layout (buttons, text, images) is defined
+              in XML files. All configuration files in Android are also XML.
+            </div>
+          </div>
+          <div class="uc">
+            <div class="uci">📰</div>
+            <div class="uct">RSS &amp; Podcasts</div>
+            <div class="ucd">
+              RSS — what powers podcast feeds and news subscriptions — is pure
+              XML. Your podcast app reads an XML file to list episodes.
+            </div>
+          </div>
+          <div class="uc">
+            <div class="uci">🏛️</div>
+            <div class="uct">Government &amp; Legal</div>
+            <div class="ucd">
+              Tax returns, procurement systems, and legal document exchange in
+              many countries use XML as the mandated format.
+            </div>
+          </div>
+          <div class="uc">
+            <div class="uci">📦</div>
+            <div class="uct">Office Documents</div>
+            <div class="ucd">
+              Microsoft Word (.docx), Excel (.xlsx), PowerPoint (.pptx) are ZIP
+              archives full of XML files inside — open one and see.
+            </div>
+          </div>
+        </div>
+
+        <h2>Benefits of Using XML</h2>
+        <div class="card">
+          <ul>
+            <li>
+              <strong>Platform independent</strong> — works on Windows, Linux,
+              Mac, mobile. Any language can read XML.
+            </li>
+            <li>
+              <strong>Human readable</strong> — you can open an XML file in
+              Notepad and understand the data immediately.
+            </li>
+            <li>
+              <strong>Self-describing</strong> — the tag names describe what the
+              data means, not just what type it is.
+            </li>
+            <li>
+              <strong>Strictly validatable</strong> — using DTD or XSD you can
+              enforce exactly what data is allowed.
+            </li>
+            <li>
+              <strong>Widely supported</strong> — every major language (Java,
+              Python, C#, PHP, JavaScript) has built-in XML support.
+            </li>
+            <li>
+              <strong>Long-term stable</strong> — published and maintained by
+              the W3C, the same body that governs HTML and CSS.
+            </li>
+            <li>
+              <strong>Extensible</strong> — you define your own tag names to
+              match your data model, not the other way around.
+            </li>
+          </ul>
+        </div>
+
+        <h2>XML vs JSON — When to Use Which?</h2>
+        <p>
+          JSON has largely replaced XML in modern REST APIs. But XML dominates
+          in enterprise, healthcare, finance, and document formats. Knowing both
+          is important.
+        </p>
+        <table>
+          <tr>
+            <th>Use Case</th>
+            <th>Prefer XML</th>
+            <th>Prefer JSON</th>
+          </tr>
+          <tr>
+            <td>Enterprise system integration</td>
+            <td>✅</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Document storage (Word, metadata)</td>
+            <td>✅</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Complex validation rules</td>
+            <td>✅ XSD is very powerful</td>
+            <td>✅ JSON Schema is weaker</td>
+          </tr>
+          <tr>
+            <td>REST API responses</td>
+            <td>—</td>
+            <td>✅ Simpler, lighter</td>
+          </tr>
+          <tr>
+            <td>Modern mobile apps</td>
+            <td>—</td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td>Healthcare / banking standards</td>
+            <td>✅ Often required by law</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Android app layouts</td>
+            <td>✅ Required by Android</td>
+            <td>—</td>
+          </tr>
+        </table>
+
+        <h2>How You'll Use XML in Your Own Projects</h2>
+        <div class="card">
+          <ul>
+            <li>
+              <strong>Config files</strong> — store app settings in XML
+              (database URLs, API keys, feature flags) instead of hardcoding
+              them
+            </li>
+            <li>
+              <strong>Data exchange between modules</strong> — two parts of your
+              system communicate by writing and reading XML files
+            </li>
+            <li>
+              <strong>Report generation</strong> — generate an XML data file,
+              then apply XSL to render it as a printable HTML page
+            </li>
+            <li>
+              <strong>University projects</strong> — student records, course
+              catalogs, library systems — all natural fits for XML
+            </li>
+            <li>
+              <strong>Reading external data</strong> — many public APIs and
+              government portals still provide data as XML (weather, transport,
+              RSS)
+            </li>
+            <li>
+              <strong>Android development</strong> — every screen layout you
+              build in Android is written in XML
+            </li>
+          </ul>
+        </div>
+
+        <div class="note info">
+          <div class="ni">ℹ️</div>
+          <p>
+            The rest of this course uses one running example: a
+            <strong>school student records system</strong>. You'll write the
+            XML, validate it, parse it with code, and display it in a browser —
+            using every technology on the same data.
+          </p>
+        </div>
+
+        <div class="bnav">
+          <button class="btn btn-s" onclick="go(0)">← Roadmap</button>
+          <button class="btn btn-p" onclick="go(2)">Next: XML Basics →</button>
+        </div>
+      </div>
+
+      <div class="section" id="s2">
+        <div class="page-title">Phase 1 — XML Basics</div>
+        <div class="page-sub">
+          Learn the syntax, rules, and structure of XML by writing your first
+          document from scratch.
+        </div>
+
+        <h2>What XML Looks Like</h2>
+        <p>
+          XML uses tags — just like HTML — but you
+          <em>invent the tag names yourself</em> to describe your data. There
+          are no predefined tags in XML.
+        </p>
+
+        <h2>Core Rules — Well-Formed XML</h2>
+        <div class="card">
+          <ul>
+            <li>
+              Every document must have
+              <strong>exactly one root element</strong> that wraps everything
+              else
+            </li>
+            <li>
+              Every opening tag <code>&lt;tag&gt;</code> must have a matching
+              closing tag <code>&lt;/tag&gt;</code>
+            </li>
+            <li>
+              Tags are <strong>case-sensitive</strong> —
+              <code>&lt;Name&gt;</code> and <code>&lt;name&gt;</code> are
+              different elements
+            </li>
+            <li>
+              Elements must be properly <strong>nested</strong> — never
+              overlapping
+            </li>
+            <li>All attribute values must be in <strong>quotes</strong></li>
+            <li>
+              The first line should always be the XML
+              <strong>declaration</strong>
+            </li>
+          </ul>
+        </div>
+
+        <h2>Your First XML File</h2>
+        <p>
+          Save this as <code>students.xml</code> — we'll reuse this file through
+          the entire course:
+        </p>
+
+        <div class="code-wrap">
+          <div class="code-hdr">
+            <div class="dots">
+              <div class="d dr"></div>
+              <div class="d dy"></div>
+              <div class="d dg"></div>
+            </div>
+            <div class="fname">students.xml</div>
+            <button class="cpbtn" onclick="cp(this)">Copy</button>
+          </div>
+          <div class="code-blk">
+            <pre><span class="c">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+<span class="t">&lt;school&gt;</span>                               <span class="c">&lt;!-- ROOT element --&gt;</span>
+
+  <span class="t">&lt;student</span> <span class="a">id</span>=<span class="v">"001"</span><span class="t">&gt;</span>                 <span class="c">&lt;!-- element with ATTRIBUTE --&gt;</span>
+    <span class="t">&lt;name&gt;</span><span class="n">Alice Johnson</span><span class="t">&lt;/name&gt;</span>
+    <span class="t">&lt;age&gt;</span><span class="n">20</span><span class="t">&lt;/age&gt;</span>
+    <span class="t">&lt;major&gt;</span><span class="n">Computer Science</span><span class="t">&lt;/major&gt;</span>
+    <span class="t">&lt;gpa&gt;</span><span class="n">3.8</span><span class="t">&lt;/gpa&gt;</span>
+  <span class="t">&lt;/student&gt;</span>
+
+  <span class="t">&lt;student</span> <span class="a">id</span>=<span class="v">"002"</span><span class="t">&gt;</span>
+    <span class="t">&lt;name&gt;</span><span class="n">Bob Smith</span><span class="t">&lt;/name&gt;</span>
+    <span class="t">&lt;age&gt;</span><span class="n">22</span><span class="t">&lt;/age&gt;</span>
+    <span class="t">&lt;major&gt;</span><span class="n">Mathematics</span><span class="t">&lt;/major&gt;</span>
+    <span class="t">&lt;gpa&gt;</span><span class="n">3.5</span><span class="t">&lt;/gpa&gt;</span>
+  <span class="t">&lt;/student&gt;</span>
+
+  <span class="t">&lt;student</span> <span class="a">id</span>=<span class="v">"003"</span><span class="t">&gt;</span>
+    <span class="t">&lt;name&gt;</span><span class="n">Sara Hassan</span><span class="t">&lt;/name&gt;</span>
+    <span class="t">&lt;age&gt;</span><span class="n">21</span><span class="t">&lt;/age&gt;</span>
+    <span class="t">&lt;major&gt;</span><span class="n">Information Systems</span><span class="t">&lt;/major&gt;</span>
+    <span class="t">&lt;gpa&gt;</span><span class="n">3.9</span><span class="t">&lt;/gpa&gt;</span>
+  <span class="t">&lt;/student&gt;</span>
+
+<span class="t">&lt;/school&gt;</span></pre>
+          </div>
+        </div>
+
+        <div class="try-it">
+          <div class="tlabel">🎯 Try It Now</div>
+          <ol>
+            <li>Open VS Code → New File → Save as <code>students.xml</code></li>
+            <li>
+              Type the code above (typing it beats copy-pasting for learning)
+            </li>
+            <li>
+              Drag the file into your browser — you should see the XML tree
+              rendered
+            </li>
+            <li>
+              Go to <code>xmlvalidation.com</code>, paste the code, click
+              Validate — should say valid
+            </li>
+            <li>
+              Break it: remove one <code>&lt;/student&gt;</code> closing tag and
+              validate again to see the error
+            </li>
+          </ol>
+        </div>
+
+        <h2>Element vs Attribute — When to Use Which?</h2>
+        <table>
+          <tr>
+            <th>Use an Element when...</th>
+            <th>Use an Attribute when...</th>
+          </tr>
+          <tr>
+            <td>The data has sub-parts of its own</td>
+            <td>It's an ID or short metadata</td>
+          </tr>
+          <tr>
+            <td>The value might grow or change later</td>
+            <td>It's a simple, non-repeating value</td>
+          </tr>
+          <tr>
+            <td>
+              Example:
+              <code
+                >&lt;address&gt;&lt;city&gt;Cairo&lt;/city&gt;&lt;/address&gt;</code
+              >
+            </td>
+            <td>Example: <code>&lt;student id="001"&gt;</code></td>
+          </tr>
+        </table>
+
+        <h2>Special Characters — Escape Codes</h2>
+        <p>
+          You cannot write <code>&lt;</code> or <code>&amp;</code> directly
+          inside content — the parser will misread them:
+        </p>
+        <table>
+          <tr>
+            <th>Character</th>
+            <th>Write This Instead</th>
+            <th>Why</th>
+          </tr>
+          <tr>
+            <td>&lt;</td>
+            <td><code>&amp;lt;</code></td>
+            <td>Would look like an opening tag</td>
+          </tr>
+          <tr>
+            <td>&gt;</td>
+            <td><code>&amp;gt;</code></td>
+            <td>Would look like a closing tag</td>
+          </tr>
+          <tr>
+            <td>&amp;</td>
+            <td><code>&amp;amp;</code></td>
+            <td>Starts all escape sequences</td>
+          </tr>
+          <tr>
+            <td>"</td>
+            <td><code>&amp;quot;</code></td>
+            <td>Used to wrap attribute values</td>
+          </tr>
+          <tr>
+            <td>'</td>
+            <td><code>&amp;apos;</code></td>
+            <td>Alternate quote character</td>
+          </tr>
+        </table>
+
+        <div class="note warn">
+          <div class="ni">⚠️</div>
+          <p>
+            <strong>Most common beginner mistake:</strong> Forgetting to close a
+            tag, or mixing cases — writing <code>&lt;Name&gt;</code> in one
+            place and <code>&lt;name&gt;</code> in another. XML is strict — one
+            mistake makes the entire file invalid.
+          </p>
+        </div>
+
+        <div class="bnav">
+          <button class="btn btn-s" onclick="go(1)">← Why XML?</button>
+          <button class="btn btn-p" onclick="go(3)">Next: DTD →</button>
+        </div>
+      </div>
+
+      <div class="section" id="s3">
+        <div class="page-title">Phase 2A — Document Type Definition (DTD)</div>
+        <div class="page-sub">
+          Define the rules your XML must follow. Without DTD, any structure is
+          accepted. With DTD, only the structure you define is valid.
+        </div>
+
+        <h2>What is a DTD?</h2>
+        <p>
+          A DTD tells a parser: "This XML must have these elements, in this
+          order, with these attributes." If the XML doesn't match — it's
+          rejected. Think of it as a contract the XML document must satisfy.
+        </p>
+
+        <div class="analogy">
+          <div class="alabel">Analogy</div>
+          A DTD is like a form template in a government office. It says: "Every
+          submission must have a Name, an ID (required), and optionally a Phone
+          number." Any submission that doesn't match the template is turned
+          away.
+        </div>
+
+        <h2>Internal DTD (inside the XML file)</h2>
+        <div class="code-wrap">
+          <div class="code-hdr">
+            <div class="dots">
+              <div class="d dr"></div>
+              <div class="d dy"></div>
+              <div class="d dg"></div>
+            </div>
+            <div class="fname">students_with_dtd.xml</div>
+            <button class="cpbtn" onclick="cp(this)">Copy</button>
+          </div>
+          <div class="code-blk">
+            <pre><span class="c">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+<span class="k">&lt;!DOCTYPE</span> <span class="n">school</span> [
+
+  <span class="k">&lt;!ELEMENT</span> <span class="n">school</span>   <span class="n">(student+)</span><span class="k">&gt;</span>             <span class="c">&lt;!-- 1 or more students --&gt;</span>
+  <span class="k">&lt;!ELEMENT</span> <span class="n">student</span>  <span class="n">(name, age, major, gpa)</span><span class="k">&gt;</span>  <span class="c">&lt;!-- these 4, in this order --&gt;</span>
+  <span class="k">&lt;!ELEMENT</span> <span class="n">name</span>     <span class="n">(#PCDATA)</span><span class="k">&gt;</span>             <span class="c">&lt;!-- #PCDATA = plain text --&gt;</span>
+  <span class="k">&lt;!ELEMENT</span> <span class="n">age</span>      <span class="n">(#PCDATA)</span><span class="k">&gt;</span>
+  <span class="k">&lt;!ELEMENT</span> <span class="n">major</span>    <span class="n">(#PCDATA)</span><span class="k">&gt;</span>
+  <span class="k">&lt;!ELEMENT</span> <span class="n">gpa</span>      <span class="n">(#PCDATA)</span><span class="k">&gt;</span>
+  <span class="k">&lt;!ATTLIST</span> <span class="n">student  id  ID  #REQUIRED</span><span class="k">&gt;</span>    <span class="c">&lt;!-- id attribute is required --&gt;</span>
+
+]&gt;
+
+<span class="t">&lt;school&gt;</span>
+  <span class="t">&lt;student</span> <span class="a">id</span>=<span class="v">"s001"</span><span class="t">&gt;</span>
+    <span class="t">&lt;name&gt;</span><span class="n">Alice Johnson</span><span class="t">&lt;/name&gt;</span>
+    <span class="t">&lt;age&gt;</span><span class="n">20</span><span class="t">&lt;/age&gt;</span>
+    <span class="t">&lt;major&gt;</span><span class="n">Computer Science</span><span class="t">&lt;/major&gt;</span>
+    <span class="t">&lt;gpa&gt;</span><span class="n">3.8</span><span class="t">&lt;/gpa&gt;</span>
+  <span class="t">&lt;/student&gt;</span>
+<span class="t">&lt;/school&gt;</span></pre>
+          </div>
+        </div>
+
+        <h2>DTD Symbol Reference</h2>
+        <table>
+          <tr>
+            <th>Symbol</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td><code>+</code></td>
+            <td>One or more (required, repeatable)</td>
+            <td><code>(student+)</code> — at least 1</td>
+          </tr>
+          <tr>
+            <td><code>*</code></td>
+            <td>Zero or more (optional, repeatable)</td>
+            <td><code>(course*)</code> — courses optional</td>
+          </tr>
+          <tr>
+            <td><code>?</code></td>
+            <td>Zero or one (optional, no repeat)</td>
+            <td><code>(phone?)</code> — phone is optional</td>
+          </tr>
+          <tr>
+            <td>none</td>
+            <td>Exactly one (required)</td>
+            <td><code>(name)</code> — must appear once</td>
+          </tr>
+          <tr>
+            <td><code>#PCDATA</code></td>
+            <td>Plain text content</td>
+            <td><code>(#PCDATA)</code></td>
+          </tr>
+          <tr>
+            <td><code>#REQUIRED</code></td>
+            <td>Attribute must be present</td>
+            <td><code>id ID #REQUIRED</code></td>
+          </tr>
+          <tr>
+            <td><code>#IMPLIED</code></td>
+            <td>Attribute is optional</td>
+            <td><code>nick CDATA #IMPLIED</code></td>
+          </tr>
+          <tr>
+            <td><code>#FIXED "v"</code></td>
+            <td>Attribute always has this value</td>
+            <td><code>ver CDATA #FIXED "1.0"</code></td>
+          </tr>
+        </table>
+
+        <h2>External DTD (Better Practice)</h2>
+        <p>
+          Separate the DTD into its own <code>.dtd</code> file and reference it.
+          Multiple XML files can then share the same rules.
+        </p>
+
+        <div class="code-wrap">
+          <div class="code-hdr">
+            <div class="dots">
+              <div class="d dr"></div>
+              <div class="d dy"></div>
+              <div class="d dg"></div>
+            </div>
+            <div class="fname">school.dtd</div>
+            <button class="cpbtn" onclick="cp(this)">Copy</button>
+          </div>
+          <div class="code-blk">
+            <pre><span class="k">&lt;!ELEMENT</span> <span class="n">school</span>   <span class="n">(student+)</span><span class="k">&gt;</span>
+<span class="k">&lt;!ELEMENT</span> <span class="n">student</span>  <span class="n">(name, age, major, gpa)</span><span class="k">&gt;</span>
+<span class="k">&lt;!ELEMENT</span> <span class="n">name</span>     <span class="n">(#PCDATA)</span><span class="k">&gt;</span>
+<span class="k">&lt;!ELEMENT</span> <span class="n">age</span>      <span class="n">(#PCDATA)</span><span class="k">&gt;</span>
+<span class="k">&lt;!ELEMENT</span> <span class="n">major</span>    <span class="n">(#PCDATA)</span><span class="k">&gt;</span>
+<span class="k">&lt;!ELEMENT</span> <span class="n">gpa</span>      <span class="n">(#PCDATA)</span><span class="k">&gt;</span>
+<span class="k">&lt;!ATTLIST</span> <span class="n">student  id  ID  #REQUIRED</span><span class="k">&gt;</span></pre>
+          </div>
+        </div>
+
+        <div class="code-wrap">
+          <div class="code-hdr">
+            <div class="dots">
+              <div class="d dr"></div>
+              <div class="d dy"></div>
+              <div class="d dg"></div>
+            </div>
+            <div class="fname">students.xml — references the external DTD</div>
+            <button class="cpbtn" onclick="cp(this)">Copy</button>
+          </div>
+          <div class="code-blk">
+            <pre><span class="c">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="k">&lt;!DOCTYPE</span> <span class="n">school</span> <span class="k">SYSTEM</span> <span class="s">"school.dtd"</span>&gt;
+
+<span class="t">&lt;school&gt;</span>
+  <span class="t">&lt;student</span> <span class="a">id</span>=<span class="v">"s001"</span><span class="t">&gt;</span>
+    <span class="t">&lt;name&gt;</span><span class="n">Alice Johnson</span><span class="t">&lt;/name&gt;</span>
+    <span class="t">&lt;age&gt;</span><span class="n">20</span><span class="t">&lt;/age&gt;</span>
+    <span class="t">&lt;major&gt;</span><span class="n">Computer Science</span><span class="t">&lt;/major&gt;</span>
+    <span class="t">&lt;gpa&gt;</span><span class="n">3.8</span><span class="t">&lt;/gpa&gt;</span>
+  <span class="t">&lt;/student&gt;</span>
+<span class="t">&lt;/school&gt;</span></pre>
+          </div>
+        </div>
+
+        <div class="try-it">
+          <div class="tlabel">🎯 Try It Now</div>
+          <ol>
+            <li>
+              Create both <code>school.dtd</code> and
+              <code>students.xml</code> in the same folder
+            </li>
+            <li>Validate at <code>xmlvalidation.com</code> — should pass</li>
+            <li>
+              Remove the <code>&lt;gpa&gt;</code> element from one student and
+              validate again — should fail
+            </li>
+            <li>
+              Add a <code>&lt;email&gt;</code> element not listed in the DTD —
+              should also fail
+            </li>
+          </ol>
+        </div>
+
+        <div class="note warn">
+          <div class="ni">⚠️</div>
+          <p>
+            <strong>DTD limitation:</strong> It cannot validate data types. It
+            can't say "age must be a number between 16 and 99" — only "age must
+            contain text." For data type validation, use XML Schema (next
+            section).
+          </p>
+        </div>
+
+        <div class="bnav">
+          <button class="btn btn-s" onclick="go(2)">← XML Basics</button>
+          <button class="btn btn-p" onclick="go(4)">Next: XML Schema →</button>
+        </div>
+      </div>
+
+      <div class="section" id="s4">
+        <div class="page-title">Phase 2B — XML Schema (XSD)</div>
+        <div class="page-sub">
+          The modern replacement for DTD. Validates data types, value ranges,
+          and patterns — and is itself written in XML syntax.
+        </div>
+
+        <h2>DTD vs XSD — Why Upgrade?</h2>
+        <table>
+          <tr>
+            <th>Feature</th>
+            <th>DTD</th>
+            <th>XSD</th>
+          </tr>
+          <tr>
+            <td>Written in XML syntax</td>
+            <td>No — its own syntax</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Data types (integer, date, boolean…)</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Min / max value constraints</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Pattern matching (like email format)</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Reusable custom types</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Namespace support</td>
+            <td>Weak</td>
+            <td>Full</td>
+          </tr>
+        </table>
+
+        <h2>The Schema File — Every Tag Explained</h2>
+        <p>
+          Save as <code>school.xsd</code>. Every tag is numbered and commented:
+        </p>
+
+        <div class="code-wrap">
+          <div class="code-hdr">
+            <div class="dots">
+              <div class="d dr"></div>
+              <div class="d dy"></div>
+              <div class="d dg"></div>
+            </div>
+            <div class="fname">school.xsd</div>
+            <button class="cpbtn" onclick="cp(this)">Copy</button>
+          </div>
+          <div class="code-blk">
+            <pre><span class="c">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+<span class="c">&lt;!-- ① xs:schema is the root of every XSD file --&gt;</span>
+<span class="t">&lt;xs:schema</span> <span class="a">xmlns:xs</span>=<span class="v">"http://www.w3.org/2001/XMLSchema"</span><span class="t">&gt;</span>
+
+  <span class="c">&lt;!-- ② Define the ROOT element "school" --&gt;</span>
+  <span class="t">&lt;xs:element</span> <span class="a">name</span>=<span class="v">"school"</span><span class="t">&gt;</span>
+
+    <span class="c">&lt;!-- ③ complexType = this element HAS child elements --&gt;</span>
+    <span class="t">&lt;xs:complexType&gt;</span>
+
+      <span class="c">&lt;!-- ④ sequence = children must appear IN THIS ORDER --&gt;</span>
+      <span class="t">&lt;xs:sequence&gt;</span>
+
+        <span class="c">&lt;!-- ⑤ "student" repeats 1 or more times --&gt;</span>
+        <span class="t">&lt;xs:element</span> <span class="a">name</span>=<span class="v">"student"</span> <span class="a">minOccurs</span>=<span class="v">"1"</span> <span class="a">maxOccurs</span>=<span class="v">"unbounded"</span><span class="t">&gt;</span>
+          <span class="t">&lt;xs:complexType&gt;</span>
+            <span class="t">&lt;xs:sequence&gt;</span>
+
+              <span class="c">&lt;!-- ⑥ name: plain text --&gt;</span>
+              <span class="t">&lt;xs:element</span> <span class="a">name</span>=<span class="v">"name"</span> <span class="a">type</span>=<span class="v">"xs:string"</span><span class="t">/&gt;</span>
+
+              <span class="c">&lt;!-- ⑦ age: integer, restricted to range 16–99 --&gt;</span>
+              <span class="t">&lt;xs:element</span> <span class="a">name</span>=<span class="v">"age"</span><span class="t">&gt;</span>
+                <span class="t">&lt;xs:simpleType&gt;</span>
+                  <span class="t">&lt;xs:restriction</span> <span class="a">base</span>=<span class="v">"xs:integer"</span><span class="t">&gt;</span>
+                    <span class="t">&lt;xs:minInclusive</span> <span class="a">value</span>=<span class="v">"16"</span><span class="t">/&gt;</span>
+                    <span class="t">&lt;xs:maxInclusive</span> <span class="a">value</span>=<span class="v">"99"</span><span class="t">/&gt;</span>
+                  <span class="t">&lt;/xs:restriction&gt;</span>
+                <span class="t">&lt;/xs:simpleType&gt;</span>
+              <span class="t">&lt;/xs:element&gt;</span>
+
+              <span class="c">&lt;!-- ⑧ major: plain text --&gt;</span>
+              <span class="t">&lt;xs:element</span> <span class="a">name</span>=<span class="v">"major"</span> <span class="a">type</span>=<span class="v">"xs:string"</span><span class="t">/&gt;</span>
+
+              <span class="c">&lt;!-- ⑨ gpa: decimal, restricted to range 0.0–4.0 --&gt;</span>
+              <span class="t">&lt;xs:element</span> <span class="a">name</span>=<span class="v">"gpa"</span><span class="t">&gt;</span>
+                <span class="t">&lt;xs:simpleType&gt;</span>
+                  <span class="t">&lt;xs:restriction</span> <span class="a">base</span>=<span class="v">"xs:decimal"</span><span class="t">&gt;</span>
+                    <span class="t">&lt;xs:minInclusive</span> <span class="a">value</span>=<span class="v">"0.0"</span><span class="t">/&gt;</span>
+                    <span class="t">&lt;xs:maxInclusive</span> <span class="a">value</span>=<span class="v">"4.0"</span><span class="t">/&gt;</span>
+                  <span class="t">&lt;/xs:restriction&gt;</span>
+                <span class="t">&lt;/xs:simpleType&gt;</span>
+              <span class="t">&lt;/xs:element&gt;</span>
+
+            <span class="t">&lt;/xs:sequence&gt;</span>
+
+            <span class="c">&lt;!-- ⑩ id attribute on &lt;student&gt;: required, type string --&gt;</span>
+            <span class="t">&lt;xs:attribute</span> <span class="a">name</span>=<span class="v">"id"</span> <span class="a">type</span>=<span class="v">"xs:string"</span> <span class="a">use</span>=<span class="v">"required"</span><span class="t">/&gt;</span>
+
+          <span class="t">&lt;/xs:complexType&gt;</span>
+        <span class="t">&lt;/xs:element&gt;</span>   <span class="c">&lt;!-- end student --&gt;</span>
+
+      <span class="t">&lt;/xs:sequence&gt;</span>
+    <span class="t">&lt;/xs:complexType&gt;</span>
+  <span class="t">&lt;/xs:element&gt;</span>     <span class="c">&lt;!-- end school --&gt;</span>
+
+<span class="t">&lt;/xs:schema&gt;</span></pre>
+          </div>
+        </div>
+
+        <h2>Link the XML to the Schema</h2>
+        <div class="code-wrap">
+          <div class="code-hdr">
+            <div class="dots">
+              <div class="d dr"></div>
+              <div class="d dy"></div>
+              <div class="d dg"></div>
+            </div>
+            <div class="fname">students.xml — linked to school.xsd</div>
+            <button class="cpbtn" onclick="cp(this)">Copy</button>
+          </div>
+          <div class="code-blk">
+            <pre><span class="c">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+<span class="t">&lt;school</span>
+  <span class="a">xmlns:xsi</span>=<span class="v">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="a">xsi:noNamespaceSchemaLocation</span>=<span class="v">"school.xsd"</span><span class="t">&gt;</span>
+
+  <span class="t">&lt;student</span> <span class="a">id</span>=<span class="v">"001"</span><span class="t">&gt;</span>
+    <span class="t">&lt;name&gt;</span><span class="n">Alice Johnson</span><span class="t">&lt;/name&gt;</span>
+    <span class="t">&lt;age&gt;</span><span class="n">20</span><span class="t">&lt;/age&gt;</span>
+    <span class="t">&lt;major&gt;</span><span class="n">Computer Science</span><span class="t">&lt;/major&gt;</span>
+    <span class="t">&lt;gpa&gt;</span><span class="n">3.8</span><span class="t">&lt;/gpa&gt;</span>
+  <span class="t">&lt;/student&gt;</span>
+  <span class="t">&lt;student</span> <span class="a">id</span>=<span class="v">"002"</span><span class="t">&gt;</span>
+    <span class="t">&lt;name&gt;</span><span class="n">Bob Smith</span><span class="t">&lt;/name&gt;</span>
+    <span class="t">&lt;age&gt;</span><span class="n">22</span><span class="t">&lt;/age&gt;</span>
+    <span class="t">&lt;major&gt;</span><span class="n">Mathematics</span><span class="t">&lt;/major&gt;</span>
+    <span class="t">&lt;gpa&gt;</span><span class="n">3.5</span><span class="t">&lt;/gpa&gt;</span>
+  <span class="t">&lt;/student&gt;</span>
+
+<span class="t">&lt;/school&gt;</span></pre>
+          </div>
+        </div>
+
+        <div class="try-it">
+          <div class="tlabel">🎯 Try It Now — Test the Validation Power</div>
+          <ol>
+            <li>
+              Create <code>school.xsd</code> and updated
+              <code>students.xml</code> in the same folder
+            </li>
+            <li>
+              Go to <code>freeformatter.com/xml-validator.html</code> — paste
+              XML top, XSD bottom, click Validate
+            </li>
+            <li>
+              <strong>Test 1:</strong> Change
+              <code>&lt;age&gt;20&lt;/age&gt;</code> to
+              <code>&lt;age&gt;15&lt;/age&gt;</code> → should fail (below min
+              16)
+            </li>
+            <li>
+              <strong>Test 2:</strong> Change
+              <code>&lt;gpa&gt;3.8&lt;/gpa&gt;</code> to
+              <code>&lt;gpa&gt;5.0&lt;/gpa&gt;</code> → should fail (above max
+              4.0)
+            </li>
+            <li>
+              <strong>Test 3:</strong> Change
+              <code>&lt;age&gt;20&lt;/age&gt;</code> to
+              <code>&lt;age&gt;twenty&lt;/age&gt;</code> → should fail (not an
+              integer)
+            </li>
+          </ol>
+        </div>
+
+        <h2>Common XSD Built-in Types</h2>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Use For</th>
+            <th>Example Valid Value</th>
+          </tr>
+          <tr>
+            <td><code>xs:string</code></td>
+            <td>Any text</td>
+            <td>Alice, Computer Science</td>
+          </tr>
+          <tr>
+            <td><code>xs:integer</code></td>
+            <td>Whole numbers</td>
+            <td>20, 100, -5</td>
+          </tr>
+          <tr>
+            <td><code>xs:decimal</code></td>
+            <td>Numbers with decimal point</td>
+            <td>3.8, 99.5, 0.0</td>
+          </tr>
+          <tr>
+            <td><code>xs:boolean</code></td>
+            <td>True or false</td>
+            <td>true, false, 1, 0</td>
+          </tr>
+          <tr>
+            <td><code>xs:date</code></td>
+            <td>Date in YYYY-MM-DD</td>
+            <td>2024-09-01</td>
+          </tr>
+          <tr>
+            <td><code>xs:positiveInteger</code></td>
+            <td>Whole numbers above zero only</td>
+            <td>1, 50, 999</td>
+          </tr>
+          <tr>
+            <td><code>xs:anyURI</code></td>
+            <td>Web addresses</td>
+            <td>https://example.com</td>
+          </tr>
+        </table>
+
+        <div class="bnav">
+          <button class="btn btn-s" onclick="go(3)">← DTD</button>
+          <button class="btn btn-p" onclick="go(5)">Next: DOM Parser →</button>
+        </div>
+      </div>
+
+      <div class="section" id="s5">
+        <div class="page-title">Phase 3A — DOM Parser</div>
+        <div class="page-sub">
+          Load the entire XML file into a tree in memory, then navigate and read
+          it freely.
+        </div>
+
+        <h2>What is DOM?</h2>
+        <p>
+          The <strong>Document Object Model (DOM)</strong> parser reads the
+          entire XML file and builds a tree of nodes in memory. You can then
+          navigate that tree in any direction, read values, modify them, add new
+          nodes, or delete them.
+        </p>
+
+        <div class="analogy">
+          <div class="alabel">Analogy</div>
+          DOM is like scanning a whole textbook and creating a full index. Once
+          scanned, you can jump to any chapter instantly. But scanning a
+          1,000-page book takes time and memory — that's the trade-off.
+        </div>
+
+        <table>
+          <tr>
+            <th></th>
+            <th>DOM</th>
+            <th>SAX (next section)</th>
+          </tr>
+          <tr>
+            <td>Loads entire file</td>
+            <td>Yes — into memory as a tree</td>
+            <td>No — streams one event at a time</td>
+          </tr>
+          <tr>
+            <td>Random access</td>
+            <td>Yes — jump to any element</td>
+            <td>No — forward only</td>
+          </tr>
+          <tr>
+            <td>Can modify the XML</td>
+            <td>Yes</td>
+            <td>No — read only</td>
+          </tr>
+          <tr>
+            <td>Good for large files</td>
+            <td>No — uses lots of RAM</td>
+            <td>Yes — very efficient</td>
+          </tr>
+        </table>
+
+        <h2>DOM in Python (no install needed)</h2>
+
+        <div class="code-wrap">
+          <div class="code-hdr">
+            <div class="dots">
+              <div class="d dr"></div>
+              <div class="d dy"></div>
+              <div class="d dg"></div>
+            </div>
+            <div class="fname">dom_parse.py</div>
+            <button class="cpbtn" onclick="cp(this)">Copy</button>
+          </div>
+          <div class="code-blk">
+            <pre><span class="c"># Python DOM parsing — uses the built-in minidom library, no install needed</span>
+<span class="k">from</span> <span class="n">xml.dom</span> <span class="k">import</span> <span class="n">minidom</span>
+
+<span class="c"># ① PARSE — load the entire XML file into memory as a tree</span>
+<span class="n">doc</span> = <span class="n">minidom.parse</span>(<span class="s">"students.xml"</span>)
+
+<span class="c"># ② GET ROOT element (the &lt;school&gt; tag)</span>
+<span class="n">root</span> = <span class="n">doc.documentElement</span>
+<span class="k">print</span>(<span class="s">f"Root element: {root.tagName}"</span>)
+<span class="k">print</span>(<span class="s">"-" * 40</span>)
+
+<span class="c"># ③ GET all &lt;student&gt; elements — returns a list</span>
+<span class="n">students</span> = <span class="n">doc.getElementsByTagName</span>(<span class="s">"student"</span>)
+
+<span class="c"># ④ LOOP through each student node</span>
+<span class="k">for</span> <span class="n">student</span> <span class="k">in</span> <span class="n">students</span>:
+
+    <span class="c"># Read the "id" ATTRIBUTE</span>
+    <span class="n">sid</span>   = <span class="n">student.getAttribute</span>(<span class="s">"id"</span>)
+
+    <span class="c"># Read text content of each child element</span>
+    <span class="n">name</span>  = <span class="n">student.getElementsByTagName</span>(<span class="s">"name"</span>)[<span class="n">0</span>]<span class="n">.firstChild.nodeValue</span>
+    <span class="n">age</span>   = <span class="n">student.getElementsByTagName</span>(<span class="s">"age"</span>)[<span class="n">0</span>]<span class="n">.firstChild.nodeValue</span>
+    <span class="n">major</span> = <span class="n">student.getElementsByTagName</span>(<span class="s">"major"</span>)[<span class="n">0</span>]<span class="n">.firstChild.nodeValue</span>
+    <span class="n">gpa</span>   = <span class="n">student.getElementsByTagName</span>(<span class="s">"gpa"</span>)[<span class="n">0</span>]<span class="n">.firstChild.nodeValue</span>
+
+    <span class="k">print</span>(<span class="s">f"Student ID : {sid}"</span>)
+    <span class="k">print</span>(<span class="s">f"  Name     : {name}"</span>)
+    <span class="k">print</span>(<span class="s">f"  Age      : {age}"</span>)
+    <span class="k">print</span>(<span class="s">f"  Major    : {major}"</span>)
+    <span class="k">print</span>(<span class="s">f"  GPA      : {gpa}"</span>)
+    <span class="k">print</span>(<span class="s">"-" * 40</span>)</pre>
+          </div>
+        </div>
+
+        <div class="out">
+          <div class="olabel">▶ Expected Output</div>
+          Root element: school<br />
+          ----------------------------------------<br />
+          Student ID : 001<br />
+          &nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp; : Alice Johnson<br />
+          &nbsp;&nbsp;Age&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 20<br />
+          &nbsp;&nbsp;Major&nbsp;&nbsp;&nbsp; : Computer Science<br />
+          &nbsp;&nbsp;GPA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 3.8<br />
+          ----------------------------------------<br />
+          Student ID : 002 ...
+        </div>
+
+        <div class="try-it">
+          <div class="tlabel">🎯 Try It Now</div>
+          <ol>
+            <li>
+              Put <code>students.xml</code> and <code>dom_parse.py</code> in the
+              same folder
+            </li>
+            <li>
+              Open terminal in that folder and run:
+              <code>python dom_parse.py</code>
+            </li>
+            <li>
+              <strong>Challenge:</strong> Only print students with GPA above 3.6
+              — add <code>if float(gpa) &gt; 3.6:</code> before the print lines
+            </li>
+            <li>
+              <strong>Challenge 2:</strong> Print the total count using
+              <code>print(f"Total students: {students.length}")</code>
+            </li>
+          </ol>
+        </div>
+
+        <h2>DOM in Java</h2>
+        <div class="code-wrap">
+          <div class="code-hdr">
+            <div class="dots">
+              <div class="d dr"></div>
+              <div class="d dy"></div>
+              <div class="d dg"></div>
+            </div>
+            <div class="fname">
+              DOMParser.java — javac DOMParser.java &nbsp;|&nbsp; java DOMParser
+            </div>
+            <button class="cpbtn" onclick="cp(this)">Copy</button>
+          </div>
+          <div class="code-blk">
+            <pre><span class="k">import</span> <span class="n">javax.xml.parsers.DocumentBuilderFactory;</span>
+<span class="k">import</span> <span class="n">javax.xml.parsers.DocumentBuilder;</span>
+<span class="k">import</span> <span class="n">org.w3c.dom.Document;</span>
+<span class="k">import</span> <span class="n">org.w3c.dom.NodeList;</span>
+<span class="k">import</span> <span class="n">org.w3c.dom.Element;</span>
+<span class="k">import</span> <span class="n">java.io.File;</span>
+
+<span class="k">public class</span> <span class="t">DOMParser</span> {
+    <span class="k">public static void</span> <span class="t">main</span>(<span class="n">String[] args</span>) <span class="k">throws</span> <span class="n">Exception</span> {
+
+        <span class="c">// ① Build the parser</span>
+        <span class="n">DocumentBuilderFactory</span> factory = <span class="n">DocumentBuilderFactory.newInstance</span>();
+        <span class="n">DocumentBuilder</span> builder = <span class="n">factory.newDocumentBuilder</span>();
+
+        <span class="c">// ② Parse the XML file</span>
+        <span class="n">Document</span> doc = <span class="n">builder.parse</span>(<span class="k">new</span> <span class="n">File</span>(<span class="s">"students.xml"</span>));
+        <span class="n">doc.getDocumentElement</span>().<span class="n">normalize</span>();
+
+        <span class="c">// ③ Get all &lt;student&gt; elements</span>
+        <span class="n">NodeList</span> students = <span class="n">doc.getElementsByTagName</span>(<span class="s">"student"</span>);
+
+        <span class="c">// ④ Loop and print each one</span>
+        <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; <span class="n">students.getLength</span>(); i++) {
+            <span class="n">Element</span> s = (<span class="n">Element</span>) <span class="n">students.item</span>(i);
+            <span class="n">String</span> id    = <span class="n">s.getAttribute</span>(<span class="s">"id"</span>);
+            <span class="n">String</span> name  = <span class="n">s.getElementsByTagName</span>(<span class="s">"name"</span>).<span class="n">item</span>(<span class="n">0</span>).<span class="n">getTextContent</span>();
+            <span class="n">String</span> major = <span class="n">s.getElementsByTagName</span>(<span class="s">"major"</span>).<span class="n">item</span>(<span class="n">0</span>).<span class="n">getTextContent</span>();
+            <span class="n">String</span> gpa   = <span class="n">s.getElementsByTagName</span>(<span class="s">"gpa"</span>).<span class="n">item</span>(<span class="n">0</span>).<span class="n">getTextContent</span>();
+            <span class="n">System.out.println</span>(<span class="s">"[" + id + "] " + name + " | " + major + " | GPA: " + gpa</span>);
+        }
+    }
+}</pre>
+          </div>
+        </div>
+
+        <div class="bnav">
+          <button class="btn btn-s" onclick="go(4)">← XML Schema</button>
+          <button class="btn btn-p" onclick="go(6)">Next: SAX Parser →</button>
+        </div>
+      </div>
+
+      <div class="section" id="s6">
+        <div class="page-title">Phase 3B — SAX Parser</div>
+        <div class="page-sub">
+          Stream-parse XML without loading the whole file. Fast and
+          memory-efficient for large documents.
+        </div>
+
+        <h2>What is SAX?</h2>
+        <p>
+          <strong>SAX (Simple API for XML)</strong> reads XML from top to bottom
+          as a stream. It doesn't load the file — instead it fires
+          <strong>events</strong> as it encounters each part: "tag opened",
+          "text found", "tag closed". You write code that reacts to those
+          events.
+        </p>
+
+        <div class="analogy">
+          <div class="alabel">Analogy</div>
+          DOM is like reading a whole book before answering any questions. SAX
+          is like someone reading the book aloud to you — you react as each
+          sentence is read, but once they've passed page 5, you can't go back.
+        </div>
+
+        <h2>The Three Core SAX Events</h2>
+        <div class="card">
+          <ul>
+            <li>
+              <strong>startElement</strong> — fires when a tag opens: e.g. when
+              the parser hits <code>&lt;student id="001"&gt;</code>
+            </li>
+            <li>
+              <strong>characters</strong> — fires when text is found: e.g. the
+              text <code>Alice Johnson</code> inside <code>&lt;name&gt;</code>
+            </li>
+            <li>
+              <strong>endElement</strong> — fires when a tag closes: e.g. when
+              the parser hits <code>&lt;/student&gt;</code>
+            </li>
+          </ul>
+        </div>
+
+        <h2>SAX in Python</h2>
+        <div class="code-wrap">
+          <div class="code-hdr">
+            <div class="dots">
+              <div class="d dr"></div>
+              <div class="d dy"></div>
+              <div class="d dg"></div>
+            </div>
+            <div class="fname">sax_parse.py</div>
+            <button class="cpbtn" onclick="cp(this)">Copy</button>
+          </div>
+          <div class="code-blk">
+            <pre><span class="k">import</span> <span class="n">xml.sax</span>
+
+<span class="c"># ① Create a handler class — your event reactions go here</span>
+<span class="k">class</span> <span class="t">StudentHandler</span>(<span class="n">xml.sax.ContentHandler</span>):
+
+    <span class="k">def</span> <span class="n">__init__</span>(<span class="k">self</span>):
+        <span class="k">self</span>.<span class="n">current_tag</span>     = <span class="s">""</span>   <span class="c"># which tag are we inside?</span>
+        <span class="k">self</span>.<span class="n">current_student</span> = {}   <span class="c"># data collected for current student</span>
+
+    <span class="c"># EVENT 1: fires every time a tag OPENS</span>
+    <span class="k">def</span> <span class="t">startElement</span>(<span class="k">self</span>, <span class="n">name, attrs</span>):
+        <span class="k">self</span>.<span class="n">current_tag</span> = <span class="n">name</span>
+        <span class="k">if</span> <span class="n">name</span> == <span class="s">"student"</span>:
+            <span class="k">self</span>.<span class="n">current_student</span> = {<span class="s">"id"</span>: <span class="n">attrs</span>[<span class="s">"id"</span>]}  <span class="c"># grab id attribute</span>
+
+    <span class="c"># EVENT 2: fires when TEXT is found inside a tag</span>
+    <span class="k">def</span> <span class="t">characters</span>(<span class="k">self</span>, <span class="n">content</span>):
+        <span class="n">text</span> = <span class="n">content.strip</span>()
+        <span class="k">if</span> <span class="n">text</span>:  <span class="c"># ignore whitespace-only content</span>
+            <span class="k">self</span>.<span class="n">current_student</span>[<span class="k">self</span>.<span class="n">current_tag</span>] = <span class="n">text</span>
+
+    <span class="c"># EVENT 3: fires every time a tag CLOSES</span>
+    <span class="k">def</span> <span class="t">endElement</span>(<span class="k">self</span>, <span class="n">name</span>):
+        <span class="k">if</span> <span class="n">name</span> == <span class="s">"student"</span>:   <span class="c"># student is fully read — print it</span>
+            <span class="k">print</span>(<span class="s">f"ID: {self.current_student.get('id')}"</span>)
+            <span class="k">print</span>(<span class="s">f"  Name  : {self.current_student.get('name')}"</span>)
+            <span class="k">print</span>(<span class="s">f"  Age   : {self.current_student.get('age')}"</span>)
+            <span class="k">print</span>(<span class="s">f"  Major : {self.current_student.get('major')}"</span>)
+            <span class="k">print</span>(<span class="s">f"  GPA   : {self.current_student.get('gpa')}"</span>)
+            <span class="k">print</span>(<span class="s">"-" * 35</span>)
+
+<span class="c"># ② Create parser, attach handler, run</span>
+<span class="n">handler</span> = <span class="t">StudentHandler</span>()
+<span class="n">xml.sax.parse</span>(<span class="s">"students.xml"</span>, <span class="n">handler</span>)</pre>
+          </div>
+        </div>
+
+        <div class="out">
+          <div class="olabel">▶ Expected Output</div>
+          ID: 001<br />
+          &nbsp;&nbsp;Name&nbsp; : Alice Johnson<br />
+          &nbsp;&nbsp;Age&nbsp;&nbsp; : 20<br />
+          &nbsp;&nbsp;Major : Computer Science<br />
+          &nbsp;&nbsp;GPA&nbsp;&nbsp; : 3.8<br />
+          -----------------------------------<br />
+          ID: 002 ...
+        </div>
+
+        <div class="try-it">
+          <div class="tlabel">🎯 Try It Now</div>
+          <ol>
+            <li>Run: <code>python sax_parse.py</code></li>
+            <li>
+              Add <code>print(f" &gt;&gt; Tag opened: {name}")</code> at the
+              start of <code>startElement</code>
+            </li>
+            <li>
+              Run again — you'll see every single event firing in order, showing
+              you exactly how SAX works internally
+            </li>
+            <li>
+              Now compare: run the DOM version too. Notice the two approaches
+              feel completely different structurally
+            </li>
+          </ol>
+        </div>
+
+        <h2>SAX in Java</h2>
+        <div class="code-wrap">
+          <div class="code-hdr">
+            <div class="dots">
+              <div class="d dr"></div>
+              <div class="d dy"></div>
+              <div class="d dg"></div>
+            </div>
+            <div class="fname">SAXExample.java</div>
+            <button class="cpbtn" onclick="cp(this)">Copy</button>
+          </div>
+          <div class="code-blk">
+            <pre><span class="k">import</span> <span class="n">javax.xml.parsers.SAXParserFactory;</span>
+<span class="k">import</span> <span class="n">javax.xml.parsers.SAXParser;</span>
+<span class="k">import</span> <span class="n">org.xml.sax.helpers.DefaultHandler;</span>
+<span class="k">import</span> <span class="n">org.xml.sax.Attributes;</span>
+<span class="k">import</span> <span class="n">java.io.File;</span>
+
+<span class="k">public class</span> <span class="t">SAXExample</span> {
+    <span class="k">public static void</span> <span class="t">main</span>(<span class="n">String[] args</span>) <span class="k">throws</span> <span class="n">Exception</span> {
+
+        <span class="n">SAXParserFactory</span> factory = <span class="n">SAXParserFactory.newInstance</span>();
+        <span class="n">SAXParser</span> parser = <span class="n">factory.newSAXParser</span>();
+
+        <span class="n">DefaultHandler</span> handler = <span class="k">new</span> <span class="n">DefaultHandler</span>() {
+            <span class="n">String</span> currentTag = <span class="s">""</span>;
+
+            <span class="k">public void</span> <span class="t">startElement</span>(<span class="n">String uri, String local, String qName, Attributes attrs</span>) {
+                currentTag = qName;
+                <span class="k">if</span> (<span class="n">qName.equals</span>(<span class="s">"student"</span>))
+                    <span class="n">System.out.println</span>(<span class="s">"\nStudent ID: " + attrs.getValue("id")</span>);
+            }
+
+            <span class="k">public void</span> <span class="t">characters</span>(<span class="k">char</span>[] ch, <span class="k">int</span> start, <span class="k">int</span> length) {
+                <span class="n">String</span> text = <span class="k">new</span> <span class="n">String</span>(ch, start, length).<span class="n">trim</span>();
+                <span class="k">if</span> (!<span class="n">text.isEmpty</span>())
+                    <span class="n">System.out.println</span>(<span class="s">"  " + currentTag + ": " + text</span>);
+            }
+        };
+
+        <span class="n">parser.parse</span>(<span class="k">new</span> <span class="n">File</span>(<span class="s">"students.xml"</span>), handler);
+    }
+}</pre>
+          </div>
+        </div>
+
+        <div class="note warn">
+          <div class="ni">⚠️</div>
+          <p>
+            <strong>When to choose SAX over DOM:</strong> When files are large
+            (megabytes or gigabytes) and you only need to read through them
+            once. SAX uses almost no memory because it never holds the whole
+            file in RAM at once.
+          </p>
+        </div>
+
+        <div class="bnav">
+          <button class="btn btn-s" onclick="go(5)">← DOM Parser</button>
+          <button class="btn btn-p" onclick="go(7)">Next: XSL / XSLT →</button>
+        </div>
+      </div>
+
+      <div class="section" id="s7">
+        <div class="page-title">Phase 4 — XSL &amp; XSLT</div>
+        <div class="page-sub">
+          Transform your XML data into a formatted HTML page that any browser
+          can display.
+        </div>
+
+        <h2>What is XSL?</h2>
+        <p>
+          <strong>XSL (Extensible Stylesheet Language)</strong> is the language
+          for transforming and presenting XML.
+          <strong>XSLT</strong> (Transformations) is the most important part —
+          it converts XML into HTML (or other formats) using template rules you
+          define.
+        </p>
+
+        <div class="analogy">
+          <div class="alabel">Analogy</div>
+          XML is the raw data in a database. XSLT is the template that says
+          "display names in bold, sort by GPA, put it all in a table." The
+          browser applies the template to the data and produces the final page.
+        </div>
+
+        <h2>Step 1 — Add XSL reference to XML</h2>
+        <div class="code-wrap">
+          <div class="code-hdr">
+            <div class="dots">
+              <div class="d dr"></div>
+              <div class="d dy"></div>
+              <div class="d dg"></div>
+            </div>
+            <div class="fname">students.xml — line 2 links to the XSL file</div>
+            <button class="cpbtn" onclick="cp(this)">Copy</button>
+          </div>
+          <div class="code-blk">
+            <pre><span class="c">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="c">&lt;?xml-stylesheet type="text/xsl" href="students.xsl"?&gt;</span>
+
+<span class="t">&lt;school&gt;</span>
+  <span class="t">&lt;student</span> <span class="a">id</span>=<span class="v">"001"</span><span class="t">&gt;</span>
+    <span class="t">&lt;name&gt;</span><span class="n">Alice Johnson</span><span class="t">&lt;/name&gt;</span>
+    <span class="t">&lt;age&gt;</span><span class="n">20</span><span class="t">&lt;/age&gt;</span>
+    <span class="t">&lt;major&gt;</span><span class="n">Computer Science</span><span class="t">&lt;/major&gt;</span>
+    <span class="t">&lt;gpa&gt;</span><span class="n">3.8</span><span class="t">&lt;/gpa&gt;</span>
+  <span class="t">&lt;/student&gt;</span>
+  <span class="t">&lt;student</span> <span class="a">id</span>=<span class="v">"002"</span><span class="t">&gt;</span>
+    <span class="t">&lt;name&gt;</span><span class="n">Bob Smith</span><span class="t">&lt;/name&gt;</span>
+    <span class="t">&lt;age&gt;</span><span class="n">22</span><span class="t">&lt;/age&gt;</span>
+    <span class="t">&lt;major&gt;</span><span class="n">Mathematics</span><span class="t">&lt;/major&gt;</span>
+    <span class="t">&lt;gpa&gt;</span><span class="n">3.5</span><span class="t">&lt;/gpa&gt;</span>
+  <span class="t">&lt;/student&gt;</span>
+  <span class="t">&lt;student</span> <span class="a">id</span>=<span class="v">"003"</span><span class="t">&gt;</span>
+    <span class="t">&lt;name&gt;</span><span class="n">Sara Hassan</span><span class="t">&lt;/name&gt;</span>
+    <span class="t">&lt;age&gt;</span><span class="n">21</span><span class="t">&lt;/age&gt;</span>
+    <span class="t">&lt;major&gt;</span><span class="n">Information Systems</span><span class="t">&lt;/major&gt;</span>
+    <span class="t">&lt;gpa&gt;</span><span class="n">3.9</span><span class="t">&lt;/gpa&gt;</span>
+  <span class="t">&lt;/student&gt;</span>
+<span class="t">&lt;/school&gt;</span></pre>
+          </div>
+        </div>
+
+        <h2>Step 2 — Create the XSL Stylesheet</h2>
+        <p>Save as <code>students.xsl</code> in the same folder:</p>
+
+        <div class="code-wrap">
+          <div class="code-hdr">
+            <div class="dots">
+              <div class="d dr"></div>
+              <div class="d dy"></div>
+              <div class="d dg"></div>
+            </div>
+            <div class="fname">students.xsl</div>
+            <button class="cpbtn" onclick="cp(this)">Copy</button>
+          </div>
+          <div class="code-blk">
+            <pre><span class="c">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+<span class="t">&lt;xsl:stylesheet</span>
+  <span class="a">version</span>=<span class="v">"1.0"</span>
+  <span class="a">xmlns:xsl</span>=<span class="v">"http://www.w3.org/1999/XSL/Transform"</span><span class="t">&gt;</span>
+
+  <span class="c">&lt;!-- Match "/" = the root of the whole document --&gt;</span>
+  <span class="t">&lt;xsl:template</span> <span class="a">match</span>=<span class="v">"/"</span><span class="t">&gt;</span>
+    &lt;html&gt;
+    &lt;head&gt;
+      &lt;title&gt;Student Records&lt;/title&gt;
+      &lt;style&gt;
+        body  { font-family: Arial, sans-serif; padding: 30px; background: #f5f5f5; }
+        h1    { color: #2563eb; margin-bottom: 16px; }
+        table { border-collapse: collapse; width: 100%; background: white; }
+        th    { background: #1c1e24; color: white; padding: 11px 14px; text-align: left; }
+        td    { padding: 9px 14px; border-bottom: 1px solid #e5e7eb; }
+        tr:hover td { background: #eff6ff; }
+      &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;h1&gt;Student Records&lt;/h1&gt;
+      &lt;table&gt;
+        &lt;tr&gt;
+          &lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;
+          &lt;th&gt;Major&lt;/th&gt;&lt;th&gt;GPA&lt;/th&gt;
+        &lt;/tr&gt;
+
+        <span class="c">&lt;!-- Loop through every &lt;student&gt; inside &lt;school&gt; --&gt;</span>
+        <span class="t">&lt;xsl:for-each</span> <span class="a">select</span>=<span class="v">"school/student"</span><span class="t">&gt;</span>
+
+          <span class="c">&lt;!-- Sort by GPA, highest first --&gt;</span>
+          <span class="t">&lt;xsl:sort</span> <span class="a">select</span>=<span class="v">"gpa"</span> <span class="a">order</span>=<span class="v">"descending"</span><span class="t">/&gt;</span>
+
+          &lt;tr&gt;
+            &lt;td&gt;<span class="t">&lt;xsl:value-of</span> <span class="a">select</span>=<span class="v">"@id"</span><span class="t">/&gt;</span>&lt;/td&gt;
+            &lt;td&gt;<span class="t">&lt;xsl:value-of</span> <span class="a">select</span>=<span class="v">"name"</span><span class="t">/&gt;</span>&lt;/td&gt;
+            &lt;td&gt;<span class="t">&lt;xsl:value-of</span> <span class="a">select</span>=<span class="v">"age"</span><span class="t">/&gt;</span>&lt;/td&gt;
+            &lt;td&gt;<span class="t">&lt;xsl:value-of</span> <span class="a">select</span>=<span class="v">"major"</span><span class="t">/&gt;</span>&lt;/td&gt;
+            &lt;td&gt;<span class="t">&lt;xsl:value-of</span> <span class="a">select</span>=<span class="v">"gpa"</span><span class="t">/&gt;</span>&lt;/td&gt;
+          &lt;/tr&gt;
+
+        <span class="t">&lt;/xsl:for-each&gt;</span>
+
+      &lt;/table&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+  <span class="t">&lt;/xsl:template&gt;</span>
+
+<span class="t">&lt;/xsl:stylesheet&gt;</span></pre>
+          </div>
+        </div>
+
+        <div class="try-it">
+          <div class="tlabel">🎯 Try It Now</div>
+          <ol>
+            <li>Save both files in the same folder</li>
+            <li>
+              Open <strong>Firefox</strong> and drag
+              <code>students.xml</code> into it — you should see an HTML table,
+              not raw XML
+            </li>
+            <li>
+              Add a 4th student to the XML, save, refresh — the table updates
+              automatically
+            </li>
+            <li>
+              Change <code>order="descending"</code> to
+              <code>order="ascending"</code> in the XSL and refresh
+            </li>
+            <li>
+              Change the <code>th</code> background color in the CSS and refresh
+              to see the result
+            </li>
+          </ol>
+        </div>
+
+        <div class="note warn">
+          <div class="ni">⚠️</div>
+          <p>
+            <strong>Chrome blocks local XSL files</strong> for security. Use
+            Firefox, or in VS Code install the
+            <strong>Live Server</strong> extension (right-click the XML file →
+            Open with Live Server).
+          </p>
+        </div>
+
+        <h2>Key XSLT Elements — Quick Reference</h2>
+        <table>
+          <tr>
+            <th>Element</th>
+            <th>What it does</th>
+          </tr>
+          <tr>
+            <td><code>&lt;xsl:template match="/"&gt;</code></td>
+            <td>
+              Matches the document root — where you build your HTML output
+            </td>
+          </tr>
+          <tr>
+            <td><code>&lt;xsl:value-of select="name"/&gt;</code></td>
+            <td>Outputs the value of an element or attribute</td>
+          </tr>
+          <tr>
+            <td><code>&lt;xsl:for-each select="school/student"&gt;</code></td>
+            <td>Loops through all matching elements</td>
+          </tr>
+          <tr>
+            <td><code>&lt;xsl:sort select="gpa" order="desc"/&gt;</code></td>
+            <td>Sorts the loop output by a field</td>
+          </tr>
+          <tr>
+            <td><code>&lt;xsl:if test="gpa &gt; 3.5"&gt;</code></td>
+            <td>Outputs content only if condition is true</td>
+          </tr>
+          <tr>
+            <td>
+              <code
+                >&lt;xsl:choose&gt; / &lt;xsl:when&gt; /
+                &lt;xsl:otherwise&gt;</code
+              >
+            </td>
+            <td>If / else if / else logic</td>
+          </tr>
+        </table>
+
+        <hr />
+
+        <div class="note ok">
+          <div class="ni">🎓</div>
+          <p>
+            <strong>Course complete!</strong> You can now write XML, validate it
+            with DTD and XSD, parse it with DOM and SAX, and display it with
+            XSLT. That's the complete XML data exchange pipeline — the same flow
+            used in banking, healthcare, government, and enterprise software
+            worldwide.
+          </p>
+        </div>
+
+        <div class="bnav">
+          <button class="btn btn-s" onclick="go(6)">← SAX Parser</button>
+          <button class="btn btn-p" onclick="go(0)">↩ Back to Roadmap</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Suggestions Panel -->
+    <div id="suggestionsPanel" class="suggestions-panel">
+      <div class="suggestions-modal">
+        <div class="suggestions-header">
+          <h3>
+            <img
+              src="icons/suggestions.png"
+              alt="suggestions"
+              class="icon-img icon-lg"
+              style="
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 8px;
+              "
+            />
+            Share Your Feedback
+          </h3>
+          <button class="close-btn" onclick="toggleSuggestions()">
+            &times;
+          </button>
+        </div>
+        <div class="suggestions-body">
+          <form id="suggestionsForm" onsubmit="submitSuggestion(event)">
+            <div class="form-group">
+              <label for="sugg-name">Your Name</label>
+              <input
+                type="text"
+                id="sugg-name"
+                name="name"
+                required
+                placeholder="Your name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="sugg-email">Your Email</label>
+              <input
+                type="email"
+                id="sugg-email"
+                name="email"
+                required
+                placeholder="your-email@example.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="sugg-type">Type of Feedback</label>
+              <select id="sugg-type" name="type" required>
+                <option value="">Select feedback type...</option>
+                <option value="bug">Bug Report</option>
+                <option value="feature">Feature Request</option>
+                <option value="content">Content Improvement</option>
+                <option value="general">General Suggestion</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="sugg-message">Your Suggestion</label>
+              <textarea
+                id="sugg-message"
+                name="message"
+                required
+                placeholder="Tell us your suggestion or feedback..."
+                rows="5"
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-p" style="width: 100%">
+              Send Suggestion
+            </button>
+          </form>
+          <div id="sugg-success" class="sugg-success" style="display: none">
+            ✅ Thank you! Your suggestion has been sent successfully.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="GuideLogic.js"></script>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <p>&copy; 2026 XML GUIDE . All rights reserved.</p>
+          <p>Made by <strong>Naman Pandey</strong></p>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-socials">
+          <h4 class="socials-title">Socials</h4>
+          <div class="socials-grid">
+            <a
+              href="https://github.com/naman3120-web"
+              target="_blank"
+              class="social-icon"
+              title="GitHub"
+            >
+              <img
+                src="icons/github.png"
+                alt="GitHub"
+                class="social-icon-img"
+              />
+            </a>
+            <a
+              href="mailto:namanpandey3120@gmail.com"
+              target="_blank"
+              class="social-icon"
+              title="Gmail"
+            >
+              <img src="icons/gmail.png" alt="Gmail" class="social-icon-img" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
