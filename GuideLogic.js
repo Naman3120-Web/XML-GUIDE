@@ -91,7 +91,7 @@ function submitSuggestion(event) {
   const message = document.getElementById("sugg-message").value;
 
   // Create a message body
-  const mailtoLink = `mailto:namanpandey.dev@gmail.com?subject=Suggestion from ${name} - ${type}&body=Name: ${name}%0DEmail: ${email}%0DType: ${type}%0D%0DMessage:%0D${message}`;
+  const mailtoLink = `mailto:namanpandey3120@gmail.com?subject=Suggestion from ${name} - ${type}&body=Name: ${name}%0DEmail: ${email}%0DType: ${type}%0D%0DMessage:%0D${message}`;
 
   // Open default email client
   window.location.href = mailtoLink;
